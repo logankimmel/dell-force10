@@ -47,6 +47,12 @@ class PuppetX::Force10::Model::Switch < PuppetX::Force10::Model::Base
     [ :snmp, :archive ]
   end
 
+  def all_vlans
+   # binding.pry
+    grp = PuppetX::Force10::Model.const_get('vlan'.capitalize).new(transport, facts, {:name => 'vlan'})
+    grp.facts['vlan_information']
+  end
+
   def interface(name)
     int = params[:interfaces].value.find { |int| int.name == name }
     int.evaluate_new_params
