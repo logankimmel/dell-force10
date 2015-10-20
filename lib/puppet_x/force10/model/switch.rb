@@ -48,8 +48,7 @@ class PuppetX::Force10::Model::Switch < PuppetX::Force10::Model::Base
   end
 
   def all_vlans
-   # binding.pry
-    grp = PuppetX::Force10::Model.const_get('vlan'.capitalize).new(transport, facts, {:name => 'vlan'})
+    grp = PuppetX::Force10::Model::Vlan.new(transport, facts, {:name => 'vlan'})
     grp.facts['vlan_information']
   end
 
